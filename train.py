@@ -13,7 +13,7 @@ def numeric_derivative(f, x, c=0, method="central", h=1e-6):
     return 0
 
 
-def train(neuron: Neuron, inputs, labels, epochs):
+def train(neuron: Neuron, inputs, labels, epochs, lr=0.001):
     for i in range(epochs):
         pred = neuron.forward(inputs)
         error = mse(pred, labels)
@@ -25,7 +25,7 @@ def train(neuron: Neuron, inputs, labels, epochs):
         if i % 1000 == 0: 
             print(f"epoch {i}, loss: {mean(error)}")
 
-        neuron.weights -= adjustment
+        neuron.weights -= adjustment * lr
 
 if __name__ == "__main__":
     my_neuron = Neuron()
